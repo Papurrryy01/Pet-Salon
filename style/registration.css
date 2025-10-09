@@ -1,0 +1,75 @@
+/* Reset + body */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: "Poppins", system-ui, sans-serif;
+  background: linear-gradient(180deg, #f8fafc, #eef2ff);
+  min-height: 100vh;
+  padding: 20px;
+  color: #1e293b;
+}
+
+/* Header */
+header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+header h1 {
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: #4338ca;
+}
+header p {
+  font-weight: 500;
+  color: #6366f1;
+}
+
+/* Card style for main content */
+main {
+  max-width: 700px;
+  margin: 0 auto;
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.07);
+  padding: 30px 40px;
+}
+
+/* Section titles */
+h2 {
+  font-size: 1.4rem;
+  color: #1e3a8a;
+  border-bottom: 2px solid #a5b4fc;
+  padding-bottom: 8px;
+  margin-bottom: 16px;
+}
+
+/* List group */
+ul#petList {
+  list-style: none;
+  padding: 0;
+}
+ul#petList li {
+  background: #f9fafb;
+  border: 1px solid #e2e8f0;
+  margin-bottom: 10px;
+  padding: 12px 16px;
+  border-radius: 10px;
+  transition: transform 0.2s, background 0.2s;
+}
+ul#petList li:hover {
+  background: #eef2ff;
+  transform: translateY(-2px);
+}
+
+/* Average age text */
+#avgAge {
+  margin-top: 20px;
+  text-align: center;
+  font-weight: 500;
+  color: #4338ca;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  main { padding: 20px; }
+  header h1 { font-size: 1.8rem; }
+}
