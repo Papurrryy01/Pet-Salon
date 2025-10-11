@@ -42,12 +42,12 @@ function Pet(name, age, gender, breed, service, type) {
     this.gender = gender;
     this.breed = breed;
     this.service = service
-    
+    this.type = type // Dog / Cat / ect...
 }
 
-let pet3 = new Pet("Rocky", 2, "Male", "Chihuahua", "Bath");
-let pet4 = new Pet("Hunter", 5, "Male", "Husky", "Hair Cut");
-let pet5 = new Pet("Brook", 3, "Male", "Boxer", "Nail");
+let pet3 = new Pet("Rocky", 2, "Male", "Chihuahua", "Bath", "Dog");
+let pet4 = new Pet("Hunter", 5, "Male", "Husky", "Hair Cut", "Dog");
+let pet5 = new Pet("Brook", 3, "Male", "Boxer", "Nail", "Dog");
 
 let petsCostructor = [pet3, pet4, pet5];
 console.log("Constructor Pets:", petsCostructor);
