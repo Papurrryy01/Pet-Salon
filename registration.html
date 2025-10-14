@@ -39,6 +39,8 @@
         <p id="avgAge" class="text-muted">Average age: -</p>
     </header>
 
+
+    <!-- Registraction Portion -->
     <section class="registration-section">
         <h2 class="section-title">Register a New Pet</h2>
 
@@ -93,10 +95,32 @@
             </div>
         </form>
     </section>
-
+    <!---------------------------->
+    
     <main class="container">
+        
         <h2 class="h5 mb-2">Registered Pets</h2>
-        <ul id="petList" class="list-group"></ul>
+
+        <div class="table-responsive">
+        <table id="petsTable" class="table table-striped table-hover align-middle">
+            <thead>
+            <tr>
+                <th>Name</th>
+                <th>Age</th>
+                <th>Gender</th>
+                <th>Breed</th>
+                <th>Service</th>
+                <th style="width: 90px;">Action</th>
+            </tr>
+            </thead>
+            <tbody id="petsTbody"></tbody>
+        </table>
+        </div>
+    
+    
+    
+    
+    
     </main>
 
 

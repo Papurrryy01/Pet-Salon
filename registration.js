@@ -1,53 +1,75 @@
-let pets = [
-    {name: "Miller", age: 1, gender: "Male", service: "Bath", breed: "Bulldog"},
-    {name: "Luna", age: 3, gender: "Female", service: "Haircut", breed: "Poodle"},
-    {name: "Rocky", age: 2, gender: "Male", service: "Nail Trim", breed: "Boxer"},
-    {name: "Bella", age: 4, gender: "Female", service: "Teeth Cleaning", breed: "Husky"}
+// Pet constructor
+function Pet(name, age, gender, breed, service, type) {
+  this.name = name;
+  this.age = Number(age);
+  this.gender = gender;
+  this.breed = breed;
+  this.service = service;
+  this.type = type; // Dog / Cat
+}
+
+//pets array
+const pets = [
+  new Pet("Miller", 1, "Male", "Bulldog", "Bath", "Dog"),
+  new Pet("Luna", 3, "Female", "Poodle", "Haircut", "Dog"),
+  new Pet("Rocky", 2, "Male", "Boxer", "Nail Trim", "Dog"),
+  new Pet("Bella", 4, "Female", "Husky", "Teeth Cleaning", "Dog"),
 ];
-console.log("Pets array Loaded:", pets);
+
 
 function displayPetCount() {
-    let total = pets.length;
-    document.getElementById("petCount").textContent = "Total Registered Pets: " + total;
+  const el = document.getElementById("petCount");
+  if (el) el.textContent = "Total Registered Pets: " + pets.length;
 }
-displayPetCount();
 
-function displayPetNames() {
-    let listItems = "";
-    for (let i=0; i < pets.length; i++) {
-        listItems += `<li class="list-group-item"><strong>${pets[i].name}</strong> - ${pets[i].service}</li>`; 
-    }
-    document.getElementById("petList").innerHTML = listItems;
+function calculateAverageAge() {
+  const el = document.getElementById("avgAge");
+  if (!el) return;
+  if (pets.length === 0) {
+    el.textContent = "Average Age: —";
+    return;
+  }
+  const total = pets.reduce((sum, p) => sum + p.age, 0);
+  el.textContent = "Average Age: " + (total / pets.length).toFixed(1);
 }
-displayPetCount();
-displayPetNames();
 
-function calculateAverageAge(){
-    let totalAge = 0
-    for (let i = 0; i < pets.length; i++){
-        totalAge += pets[i].age;
-    }
-    const avg = totalAge / pets.length;
-    document.getElementById("avgAge").textContent = "Average Age: " + avg.toFixed(1);
+// Table
+function displayRow(pet, index) {
+  return `
+    <tr data-index="${index}">
+      <td>${pet.name}</td>
+      <td>${pet.age}</td>
+      <td>${pet.gender}</td>
+      <td>${pet.breed}</td>
+      <td>${pet.service}</td>
+      <td>
+        <button class="btn btn-sm btn-danger" onclick="deletePet(${index})">
+          Delete
+        </button>
+      </td>
+    </tr>`;
 }
+
+// Whole table
+function renderTable() {
+  const tbody = document.getElementById("petsTbody");
+  if (!tbody) return;
+  let rows = "";
+  for (let i = 0; i < pets.length; i++) {
+    rows += displayRow(pets[i], i);
+  }
+  tbody.innerHTML = rows;
+}
+
+//Actions
+function deletePet(index) {
+  pets.splice(index, 1);
+  displayPetCount();
+  calculateAverageAge();
+  renderTable();
+}
+
+//Init
 displayPetCount();
-displayPetNames();
 calculateAverageAge();
-
-// constructor
-
-function Pet(name, age, gender, breed, service, type) {
-    this.name = name,
-    this.age = age,
-    this.gender = gender;
-    this.breed = breed;
-    this.service = service
-    this.type = type // Dog / Cat / ect...
-}
-
-let pet3 = new Pet("Rocky", 2, "Male", "Chihuahua", "Bath", "Dog");
-let pet4 = new Pet("Hunter", 5, "Male", "Husky", "Hair Cut", "Dog");
-let pet5 = new Pet("Brook", 3, "Male", "Boxer", "Nail", "Dog");
-
-let petsCostructor = [pet3, pet4, pet5];
-console.log("Constructor Pets:", petsCostructor);
+renderTable();
