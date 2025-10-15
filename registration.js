@@ -8,14 +8,37 @@ function Pet(name, age, gender, breed, service, type) {
   this.type = type; // Dog / Cat
 }
 
-//pets array
-const pets = [
-  new Pet("Miller", 1, "Male", "Bulldog", "Bath", "Dog"),
-  new Pet("Luna", 3, "Female", "Poodle", "Haircut", "Dog"),
-  new Pet("Rocky", 2, "Male", "Boxer", "Nail Trim", "Dog"),
-  new Pet("Bella", 4, "Female", "Husky", "Teeth Cleaning", "Dog"),
-];
+//list of registered pets
+const pets = [];
 
+// Registration handler
+function registerPet(event) {
+  event.preventDefault();// to prevent the page from reloading()
+  //(IDs defined in registration.html)
+  const name = document.getElementById("petName").value.trim();
+  const age = document.getElementById("petAge").value;
+  const breed = document.getElementById("petBreed").value.trim();
+  const gender = document.getElementById("petGender").value;
+  const service = document.getElementById("petService").value;
+  const type = document.getElementById("petType").value;
+
+  //validation (chequea si los avlores estan vacios o son no-validos)
+  if (!name || age === "" || !breed || !gender || !service || !type) {
+    alert("Please fill out all fields before registering the pet.");
+    return;
+  }
+
+  const newPet = new Pet(name, age, gender, breed, service, type);
+  pets.push(newPet);
+
+  // Update UI
+  renderTable();
+  displayPetCount();
+  calculateAverageAge();
+
+  // Clear the form
+  event.target.reset();
+}
 
 function displayPetCount() {
   const el = document.getElementById("petCount");
@@ -73,3 +96,6 @@ function deletePet(index) {
 displayPetCount();
 calculateAverageAge();
 renderTable();
+
+// Expose registerPet globally so the inline onsubmit can call it
+window.registerPet = registerPet;
