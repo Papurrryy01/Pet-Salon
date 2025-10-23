@@ -69,6 +69,7 @@ function displayRow(pet, index) {
         <button class="btn btn-sm btn-danger" onclick="deletePet(${index})">
           Delete
         </button>
+         
       </td>
     </tr>`;
 }
@@ -97,5 +98,5 @@ displayPetCount();
 calculateAverageAge();
 renderTable();
 
-// Expose registerPet globally so the inline onsubmit can call it
+// Expose registerPet
 window.registerPet = registerPet;
