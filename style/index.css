@@ -1,17 +1,12 @@
-/* ===========================
-   Velvet Paw Studio Styles – Green Mountain Theme
-   =========================== */
-
-/* Colors */
 :root {
   --green-mountain: #4FA772;   /* main green */
   --mint: #AEE1B8;             /* light accent green */
   --dark: #2c2c2c;             /* text */
   --light-gray: #f9fafb;       /* background */
-  --white: #ffffff;
+  --white: #ffffff;            /* surface */
 }
 
-/* General Reset */
+/* ---------------- Base Styles ---------------- */
 body {
   font-family: Arial, Helvetica, sans-serif;
   background-color: var(--light-gray);
@@ -23,39 +18,51 @@ body {
 /* Navbar */
 .navbar {
   padding: 0.8rem 1rem;
+  background-color: var(--white);
+  border-bottom: 1px solid #e2e2e2;
 }
+
 .navbar-brand {
   font-weight: bold;
   color: var(--green-mountain);
   letter-spacing: 1px;
+  transition: color 0.3s ease;
 }
+
 .navbar-brand:hover {
   color: var(--mint);
 }
+
 .nav-link {
   color: var(--dark);
   margin-left: 1rem;
+  transition: color 0.3s ease;
 }
+
 .nav-link:hover,
 .nav-link.active {
   color: var(--green-mountain);
 }
 
-/* Hero Section */
+/* ---------------- Hero Section ---------------- */
 .hero {
   background: linear-gradient(180deg, var(--white) 0%, #ecf7f0 100%);
   padding: 80px 20px;
+  text-align: center;
 }
+
 .hero-title {
   font-size: 2.5rem;
   font-weight: bold;
   color: var(--green-mountain);
 }
+
 .hero-text {
   max-width: 600px;
   margin: 1rem auto 2rem;
   font-size: 1.1rem;
 }
+
 .main-btn {
   background-color: var(--green-mountain);
   color: var(--white);
@@ -65,48 +72,283 @@ body {
   font-weight: bold;
   transition: all 0.3s ease;
 }
+
 .main-btn:hover {
   background-color: var(--mint);
   color: var(--dark);
 }
 
-/* Info Section */
+/* ---------------- Info Section ---------------- */
 .info {
   padding: 60px 0;
+  background-color: var(--white);
 }
+
 .info h2 {
   color: var(--green-mountain);
   margin-bottom: 1rem;
 }
+
 .feature-list {
   list-style: none;
   padding: 0;
 }
+
 .feature-list li {
   background-color: var(--white);
   padding: 10px 15px;
   margin: 8px 0;
   border-radius: 6px;
   border-left: 4px solid var(--green-mountain);
+  transition: all 0.3s ease;
 }
 
 .feature-list li:hover {
-    border-left: 4px solid var(--mint);
-    background-color: #f8fef8;
-    transition: all 0.3s ease;
+  border-left: 4px solid var(--mint);
+  background-color: #f8fef8;
 }
 
-/* Footer */
+/* ---------------- Footer ---------------- */
 .footer {
   background-color: var(--white);
   padding: 20px 0;
   margin-top: 40px;
   border-top: 1px solid #ddd;
+  text-align: center;
 }
+
 .footer a {
   color: var(--green-mountain);
   text-decoration: none;
 }
+
 .footer a:hover {
   color: var(--mint);
+}
+
+/* ---------------- Smooth Transitions ---------------- */
+body,
+.navbar,
+.footer,
+.hero,
+.feature-list li,
+.nav-link,
+.navbar-brand {
+  transition: background-color .3s ease, color .3s ease, border-color .3s ease;
+}
+
+/* =====================================================
+   DARK MODE
+   ===================================================== */
+body.dark-mode {
+  --bg: #0f1213;
+  --surface: #171c1d;
+  --elevated: #1e2426;
+  --text: #e7ecec;
+  --muted: #b7c2c2;
+  --border: #2a3234;
+  --accent: #71e2a1;
+  --accent-strong: #18a95b;
+  --shadow: 0 6px 24px rgba(0, 0, 0, .35);
+  --field: #121617;
+  --field-border: #2a3234;
+  --hero-top: #121515;
+  --hero-bottom: #0f1213;
+
+  background: var(--bg);
+  color: var(--text);
+  color-scheme: dark;
+}
+
+/* Navbar */
+body.dark-mode .navbar {
+  background: #151818 !important;
+  border-bottom: 1px solid var(--border);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, .4);
+}
+
+body.dark-mode .nav-link,
+body.dark-mode .navbar-brand {
+  color: var(--text) !important;
+}
+
+body.dark-mode .nav-link:hover,
+body.dark-mode .nav-link.active {
+  color: var(--accent) !important;
+}
+
+/* Hero */
+body.dark-mode .hero {
+  background: linear-gradient(to bottom, #151818, #0f1213);
+  color: var(--text);
+}
+
+body.dark-mode .hero-title {
+  color: var(--accent);
+}
+
+body.dark-mode .hero-text {
+  color: var(--muted);
+}
+
+body.dark-mode .main-btn {
+  background: var(--accent-strong);
+  color: #07100b;
+  border: none;
+  border-radius: 8px;
+  padding: 0.7rem 1.3rem;
+  font-weight: 600;
+  transition: background .3s ease;
+}
+
+body.dark-mode .main-btn:hover {
+  background: var(--accent);
+  color: #0f1213;
+}
+
+/* ---------------- Info Section ---------------- */
+body.dark-mode .info,
+body.dark-mode .info .container,
+body.dark-mode .info .row,
+body.dark-mode .info .col-md-6 {
+  background: transparent !important;
+  color: var(--text) !important;
+}
+
+body.dark-mode .info h2 {
+  color: var(--accent);
+}
+
+body.dark-mode .info p {
+  color: var(--text);
+}
+
+body.dark-mode .feature-list li {
+  background: var(--surface);
+  color: var(--text);
+  border-left: 4px solid var(--accent);
+  border-radius: 6px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.25);
+}
+
+body.dark-mode .feature-list li:hover {
+  border-left-color: var(--accent-strong);
+  background-color: #1a1f1f;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+}
+
+/* ---------------- Footer ---------------- */
+body.dark-mode .footer {
+  background: var(--elevated);
+  color: var(--text);
+  border-top: 1px solid var(--border);
+}
+
+body.dark-mode .footer a {
+  color: var(--accent);
+}
+
+body.dark-mode .footer a:hover {
+  color: var(--text);
+}
+
+/* ---------------- Registration Section ---------------- */
+.registration-section {
+  max-width: 980px;
+  margin: 2rem auto;
+  padding: 1.25rem 1.25rem 1.6rem;
+  border-radius: 16px;
+}
+
+.registration-section h2,
+.registration-section h3 {
+  font-weight: 800;
+  margin-bottom: 0.5rem;
+}
+
+.registration-section form {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: .9rem 1rem;
+}
+
+@media (min-width: 720px) {
+  .registration-section form {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .registration-section form textarea,
+  .registration-section form .full,
+  .registration-section form .actions {
+    grid-column: 1 / -1;
+  }
+}
+
+.registration-section label {
+  display: block;
+  font-size: .92rem;
+  color: var(--muted);
+  margin-bottom: .35rem;
+}
+
+.registration-section input,
+.registration-section select,
+.registration-section textarea {
+  width: 100%;
+  min-height: 44px;
+  background: var(--field);
+  border: 1px solid var(--field-border);
+  color: var(--text);
+  border-radius: 10px;
+  padding: .55rem .8rem;
+}
+
+.registration-section input::placeholder,
+.registration-section textarea::placeholder {
+  color: #8aa09a;
+}
+
+.registration-section input:focus,
+.registration-section select:focus,
+.registration-section textarea:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px color-mix(in oklab, var(--accent) 25%, transparent);
+  outline: none;
+}
+
+.registration-section .actions {
+  grid-column: 1 / -1;
+  display: flex;
+  gap: .6rem;
+  align-items: center;
+  justify-content: flex-start;
+  margin-top: .2rem;
+}
+
+.registration-section .btn-primary {
+  background: var(--accent);
+  border: 1px solid var(--accent);
+  color: #0f1213;
+  font-weight: 700;
+}
+
+.registration-section .btn-primary:hover {
+  filter: brightness(1.05);
+}
+
+.registration-section .btn-reset {
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text);
+}
+
+.registration-section .btn-reset:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
+/* ---------------- Transitions ---------------- */
+*,
+*::before,
+*::after {
+  transition: background-color .25s ease, color .25s ease, border-color .25s ease, box-shadow .25s ease, filter .25s ease;
 }

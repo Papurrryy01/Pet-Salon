@@ -56,6 +56,42 @@ $(document).ready(function () {
     this.reset();
   });
 
+  // Local storage validation
+  $("#servicesForm").on("submit", function (event) {
+  event.preventDefault();
+
+  const name = $("#serviceName").val().trim();
+  const desc = $("#serviceDescription").val().trim();
+  const priceRaw = $("#servicePrice").val().trim();
+  const priceValue = Number(priceRaw);
+
+  // reset invalid states
+  $("#serviceName, #serviceDescription, #servicePrice").removeClass("is-invalid");
+
+  // validate
+  if (!name) $("#serviceName").addClass("is-invalid");
+  if (!desc) $("#serviceDescription").addClass("is-invalid");
+  if (!Number.isFinite(priceValue) || priceValue <= 0) $("#servicePrice").addClass("is-invalid");
+
+  if (!name || !desc || !Number.isFinite(priceValue) || priceValue <= 0) {
+    return; // ⟵ stop here; do not save
+  }
+
+  const newService = {
+    id: Date.now(),
+    name,
+    desc,
+    price: priceValue.toFixed(2)
+  };
+
+  services.push(newService);
+  saveServices();   // writes only to "services"
+  renderServices();
+  this.reset();
+});
+
+
+
   // show services
   function renderServices() {
     $managerList.empty();
@@ -150,3 +186,19 @@ $(document).ready(function () {
     localStorage.setItem("cart", JSON.stringify(cart));
   }
 });
+
+//change mode
+
+$("#changeModeBtn").click(function(){
+    $("body").toggleClass("dark-mode");
+
+    const isDark = $("body").hasClass("dark-mode");
+    
+    if (isDark) {
+        $("h1").text("Dark Mode");
+    } else{
+        $("h1").text("Light Mode");
+    }
+});
+
+
